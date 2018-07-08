@@ -2,16 +2,20 @@ echo ChemAutoInstaller
 echo Author:Jinzhe Zeng
 echo Email:njzjz@qq.com 10154601140@stu.ecnu.edu.cn
 
-CAI_SOFT_DIR=$HOME/ChemAutoInstaller
-CAI_PACKAGE_DIR=${CAI_SOFT_DIR}/packages
-CAI_BASHRC_FILE=${CAI_SOFT_DIR}/.bashrc
+function init(){
+	CAI_SOFT_DIR=$HOME/ChemAutoInstaller
+	CAI_PACKAGE_DIR=${CAI_SOFT_DIR}/packages
+	CAI_BASHRC_FILE=${CAI_SOFT_DIR}/.bashrc
 
-if [ ! -d "${CAI_SOFT_DIR}" ]; then
-	mkdir "${CAI_SOFT_DIR}"
-fi
-if [ ! -d "${CAI_PACKAGE_DIR}" ];then
-	mkdir "${CAI_PACKAGE_DIR}"
-fi
+	if [ ! -d "${CAI_SOFT_DIR}" ]; then
+		mkdir "${CAI_SOFT_DIR}"
+	fi
+	if [ ! -d "${CAI_PACKAGE_DIR}" ];then
+		mkdir "${CAI_PACKAGE_DIR}"
+	fi
+	setbashrc
+	checkNetwork
+}
 
 function setbashrc(){
 	if [ ! -f "${CAI_BASHRC_FILE}" ]; then
@@ -129,7 +133,10 @@ function installOpenMPI(){
 }
 
 function checkIntel(){
-	source /share/apps/intel/compilers_and_libraries/linux/bin/compilervars.sh intel64
+	CAI_INTEL_SH=/share/apps/intel/compilers_and_libraries/linux/bin/compilervars.sh
+	if [ -f "${CAI_INTEL_SH}" ];then
+		source ${CAI_INTEL_SH} intel64
+	fi
 	if [ -x "$(command -v mpiicpc)" ];then
 		return 0
 	else
@@ -171,47 +178,59 @@ function installVMD(){
 	fi
 }
 
-setbashrc
-checkNetwork
+function usage(){
+	echo Usage:
+	echo bash ChemAutoInstaller.sh --anaconda --openbabel --rdkit --lammps --vmd --openmpi --reacnetgenerator
+}
 
 ARGS=`getopt -a -o Ah -l all,anaconda,openbabel,rdkit,lammps,vmd,openmpi,reacnetgenerator,help -- "$@"`
-#[ $? -ne 0 ] && usage
+[ $? -ne 0 ] && usage && exit
+[ $# -eq 0 ] && usage && exit
 eval set -- "${ARGS}"
 
 while true;do
 	case "$1" in
 		--anaconda)
-			installAnaconda
+			CAI_IF_INSTALL=42
+			CAI_IF_ANACONDA=42
 			;;
 		--openbabel)
-			installOpenBabel
+			CAI_IF_INSTALL=42
+			CAI_IF_OPENBABEL=42
 			;;
 		--rdkit)
-			installRDkit
+			CAI_IF_INSTALL=42
+			CAI_IF_RDKIT=42
 			;;
 		--lammps)
-			installLAMMPS
+			CAI_IF_INSTALL=42
+			CAI_IF_LAMMPS=42
 			;;
 		--vmd)
-			installVMD
+			CAI_IF_INSTALL=42
+			CAI_IF_VMD=42
 			;;
 		--openmpi)
-			installOpenMPI
+			CAI_IF_INSTALL=42
+			CAI_IF_OPENMPI=42
 			;;
 		--reacnetgenerator)
-			installReacNetGenerator
+			CAI_IF_INSTALL=42
+			CAI_IF_REACNETGENERATOR=42
 			;;
 		-A|--all)
-			installAnaconda
-			installOpenBabel
-			installRDkit
-			installLAMMPS
-			installVMD
-			installOpenMPI
-			installReacNetGenerator
+			CAI_IF_INSTALL=42
+			CAI_IF_ANACONDA=42
+			CAI_IF_OPENBABEL=42
+			CAI_IF_RDKIT=42
+			CAI_IF_LAMMPS=42
+			CAI_IF_VMD=42
+			CAI_IF_OPENMPI=42
+			CAI_IF_REACNETGENERATOR=42
 			;;
 		-h|--help)
-			#usage
+			usage
+			exit
 			;;
 		--)
 			break
@@ -220,3 +239,29 @@ while true;do
 	shift
 done
 
+if [ ! -z "$CAI_IF_INSTALL" ];then
+	init
+else
+	usage && exit
+fi
+if [ ! -z "$CAI_IF_ANACONDA" ];then
+	installAnaconda
+fi
+if [ ! -z "$CAI_IF_OPENBABEL" ];then
+	installOpenBabel
+fi
+if [ ! -z "$CAI_IF_RDKIT" ];then
+	installRDkit
+fi
+if [ ! -z "$CAI_IF_LAMMPS" ];then
+	installLAMMPS
+fi
+if [ ! -z "$CAI_IF_VMD" ];then
+	installVMD
+fi
+if [ ! -z "$CAI_IF_OPENMPI" ];then
+	installOpenMPI
+fi
+if [ ! -z "$CAI_IF_REACNETGENERATOR" ];then
+	installReacNetGenerator
+fi
