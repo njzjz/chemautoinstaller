@@ -59,7 +59,7 @@ function installAnaconda(){
 		CAI_ANACONDA_DIR=${CAI_SOFT_DIR}/anaconda3
 		wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O ${CAI_PACKAGE_DIR}/anaconda3.sh
 		bash ${CAI_PACKAGE_DIR}/anaconda3.sh -b -p ${CAI_ANACONDA_DIR}
-		echo 'export PATH=$PATH:'${CAI_ANACONDA_DIR}'/bin'>>${CAI_BASHRC_FILE}
+		echo 'export PATH='${CAI_ANACONDA_DIR}'/bin:$PATH'>>${CAI_BASHRC_FILE}
 	    setbashrc
 		setMirror
 		echo Anaconda 3 is installed.
@@ -109,7 +109,7 @@ function installLAMMPS(){
 		installOpenMPI
 		cd ${CAI_LAMMPS_DIR}/src && make mpi
 	fi
-	echo 'export PATH=$PATH:'${CAI_LAMMPS_DIR}>>${CAI_BASHRC_FILE}
+	echo 'export PATH=$PATH:'${CAI_LAMMPS_DIR}/src>>${CAI_BASHRC_FILE}
 	setbashrc
 }
 
