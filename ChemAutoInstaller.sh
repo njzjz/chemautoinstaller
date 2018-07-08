@@ -178,12 +178,26 @@ function installVMD(){
 	fi
 }
 
-function usage(){
-	echo Usage:
-	echo bash ChemAutoInstaller.sh --anaconda --openbabel --rdkit --lammps --vmd --openmpi --reacnetgenerator
+function installGrace(){
+	checkNetwork
+	wget ftp://plasma-gate.weizmann.ac.il/pub/grace/src/grace-latest.tar.gz -O ${CAI_PACKAGE_DIR}/grace.tar.gz
+	tar -vxzf ${CAI_PACKAGE_DIR}/grace.tar.gz -C ${CAI_PACKAGE_DIR}
+	cd ${CAI_PACKAGE_DIR}/grace-5.1.25 && ./configure --prefix=${CAI_SOFT_DIR}
+	cd ${CAI_PACKAGE_DIR}/grace-5.1.25 && make && make install
+	rm -rf ${CAI_PACKAGES_DIR}/grace-5.1.25
+	echo 'export PATH=$PATH:'${CAI_SOFT_DIR}/grace/bin>>${CAI_BASHRC_FILE}
+	setbashrc
 }
 
-ARGS=`getopt -a -o Ah -l all,anaconda,openbabel,rdkit,lammps,vmd,openmpi,reacnetgenerator,help -- "$@"`
+function usage(){
+	echo Usage:
+	echo Install softwares one by one:
+	echo bash ChemAutoInstaller.sh --anaconda --openbabel --rdkit --lammps --vmd --openmpi --grace --reacnetgenerator
+	echo Or install all of them:
+	echo bash ChemAutoInstaller.sh --all
+}
+
+ARGS=`getopt -a -o Ah -l all,anaconda,openbabel,rdkit,lammps,vmd,openmpi,grace,reacnetgenerator,help -- "$@"`
 [ $? -ne 0 ] && usage && exit
 [ $# -eq 0 ] && usage && exit
 eval set -- "${ARGS}"
@@ -214,6 +228,10 @@ while true;do
 			CAI_IF_INSTALL=42
 			CAI_IF_OPENMPI=42
 			;;
+		--grace)
+			CAI_IF_INSTALL=42
+			CAI_IF_GRACE=42
+			;;
 		--reacnetgenerator)
 			CAI_IF_INSTALL=42
 			CAI_IF_REACNETGENERATOR=42
@@ -227,6 +245,7 @@ while true;do
 			CAI_IF_VMD=42
 			CAI_IF_OPENMPI=42
 			CAI_IF_REACNETGENERATOR=42
+			CAI_IF_GRACE=42
 			;;
 		-h|--help)
 			usage
@@ -264,4 +283,7 @@ if [ ! -z "$CAI_IF_OPENMPI" ];then
 fi
 if [ ! -z "$CAI_IF_REACNETGENERATOR" ];then
 	installReacNetGenerator
+fi
+if [ ! -z "$CAI_IF_GRACE" ];then
+	installGrace
 fi

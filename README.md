@@ -12,6 +12,7 @@ Scripts to install chemical softwares on Linux automatically.
 * [RDkit](https://github.com/rdkit/rdkit)
 * [Anaconda 3](https://conda.io)
 * [OpenMPI](https://github.com/open-mpi/ompi)
+* [Grace](http://plasma-gate.weizmann.ac.il/Grace/)
 * [ReacNetGenerator](https://github.com/njzjz/ReacNetGenerator)
 
 ## Usage
@@ -23,5 +24,5 @@ $ wget https://raw.githubusercontent.com/njzjz/ChemAutoInstaller/master/ChemAuto
 
 Or you can install them one by one:
 ```bash
-$ bash ChemAutoInstaller.sh --anaconda --openbabel --rdkit --lammps --vmd --openmpi --reacnetgenerator
+$ bash ChemAutoInstaller.sh --anaconda --openbabel --rdkit --lammps --vmd --openmpi --grace --reacnetgenerator
 ```
