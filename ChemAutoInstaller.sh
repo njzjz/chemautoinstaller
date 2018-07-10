@@ -20,13 +20,10 @@ function init(){
 function setbashrc(){
 	if [ ! -f "${CAI_BASHRC_FILE}" ]; then
 		touch ${CAI_BASHRC_FILE}
-	fi
-	source $HOME/.bashrc
-	if [ ! -n "${ChemAutoInstaller}" ];then
-		echo 'export ChemAutoInstaller=1'>>${CAI_BASHRC_FILE}
 		echo 'source '${CAI_BASHRC_FILE}>>$HOME/.bashrc
-		source $HOME/.bashrc
 	fi
+	source $CAI_BASHRC_FILE
+	source $HOME/.bashrc
 }
 
 function checkNetwork(){
