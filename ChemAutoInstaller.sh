@@ -34,7 +34,7 @@ function checkNetwork(){
 		#ECNU Internet Login
 		echo ChemAutoInstaller needs to connect the Internet.
 		CAI_INTERNET_FILE=${CAI_SOFT_DIR}/.internetlogin
-		if [ -f "{CAI_INTERNET_FILE}" ];then
+		if [ -f "${CAI_INTERNET_FILE}" ];then
 			source ${CAI_INTERNET_FILE}
 		fi
 		if [ ! -n "${ECNUUSERNAME}" ];then
