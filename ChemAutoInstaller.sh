@@ -3,7 +3,9 @@ echo Author:Jinzhe Zeng
 echo Email:njzjz@qq.com 10154601140@stu.ecnu.edu.cn
 
 function init(){
-	CAI_SOFT_DIR=$HOME/ChemAutoInstaller
+	if [ ! -n "${CAI_SOFT_DIR}" ];then	
+		CAI_SOFT_DIR=$HOME/ChemAutoInstaller
+	fi
 	CAI_PACKAGE_DIR=${CAI_SOFT_DIR}/packages
 	CAI_BASHRC_FILE=${CAI_SOFT_DIR}/.bashrc
 
@@ -103,7 +105,7 @@ function installLAMMPS(){
 	CAI_LAMMPS_DIR=${CAI_SOFT_DIR}/lammps
     wget http://lammps.sandia.gov/tars/lammps-stable.tar.gz -O ${CAI_PACKAGE_DIR}/lammps.tar.gz
 	tar -vxf ${CAI_PACKAGE_DIR}/lammps.tar.gz -C ${CAI_PACKAGE_DIR}
-	mv ${CAI_PACKAGE_DIR}/lammps-16Mar18 ${CAI_LAMMPS_DIR}	
+	mv ${CAI_PACKAGE_DIR}/lammps-22Aug18 ${CAI_LAMMPS_DIR}	
 	cd ${CAI_LAMMPS_DIR}/src && make yes-user-reaxc
 	if checkIntel ;then
 		cd ${CAI_LAMMPS_DIR}/src && make intel_cpu_intelmpi
@@ -199,13 +201,16 @@ function usage(){
 	echo bash ChemAutoInstaller.sh --all
 }
 
-ARGS=`getopt -a -o Ah -l all,anaconda,openbabel,rdkit,lammps,vmd,openmpi,grace,reacnetgenerator,help -- "$@"`
+ARGS=`getopt -a -o Ah -l prefix:,all,anaconda,openbabel,rdkit,lammps,vmd,openmpi,grace,reacnetgenerator,help -- "$@"`
 [ $? -ne 0 ] && usage && exit
 [ $# -eq 0 ] && usage && exit
 eval set -- "${ARGS}"
 
 while true;do
 	case "$1" in
+		--prefix)
+			CAI_SOFT_DIR=$2
+			;;
 		--anaconda)
 			CAI_IF_INSTALL=42
 			CAI_IF_ANACONDA=42
