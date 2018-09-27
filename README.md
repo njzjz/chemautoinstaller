@@ -3,7 +3,7 @@ Scripts to install chemical softwares on Linux automatically.
 
 **Author**: Jinzhe Zeng
 
-**Email**: njzjz@qq.com 10154601140@stu.ecnu.edu.cn
+**Email**: jzzeng@stu.ecnu.edu.cn
 
 ## Supporting Softwares
 * [LAMMPS](https://github.com/lammps/lammps)
