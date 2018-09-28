@@ -1,6 +1,6 @@
 echo ChemAutoInstaller
 echo Author:Jinzhe Zeng
-echo Email:njzjz@qq.com 10154601140@stu.ecnu.edu.cn
+echo Email:jzzeng@stu.ecnu.edu.cn
 
 function init(){
 	if [ ! -n "${CAI_SOFT_DIR}" ];then	
@@ -53,7 +53,7 @@ function checkNetwork(){
 
 #Anaconda3
 function installAnaconda(){
-	if ! [ -x "$(command -v anaconda)" ];then
+	if ! [ -x "$(command -v conda)" ];then
 		echo Installing Anaconda 3...
 		CAI_ANACONDA_DIR=${CAI_SOFT_DIR}/anaconda3
 		wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O ${CAI_PACKAGE_DIR}/anaconda3.sh
