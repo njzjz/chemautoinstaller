@@ -24,5 +24,5 @@ $ wget https://raw.githubusercontent.com/njzjz/ChemAutoInstaller/master/ChemAuto
 
 Or you can install them one by one:
 ```bash
-$ bash ChemAutoInstaller.sh --anaconda --openbabel --rdkit --lammps --vmd --openmpi --grace --reacnetgenerator
+$ bash ChemAutoInstaller.sh --anaconda --openbabel --rdkit --lammps --vmd --openmpi --grace --reacnetgenerator --prefix=$HOME/soft
 ```
