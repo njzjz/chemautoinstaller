@@ -91,7 +91,9 @@ function installReacNetGenerator(){
 	echo Installing ReacNetGenerator...
 	installAnaconda
 	checkNetwork
-	conda install -y reacnetgenerator -c njzjz
+	installOpenBabel
+	installRDkit
+	pip install reacnetgenerator
 }
 
 #LAMMPS
