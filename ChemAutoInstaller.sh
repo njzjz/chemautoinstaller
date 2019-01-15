@@ -67,8 +67,6 @@ function installAnaconda(){
 
 function setMirror(){
 	wget https://tuna.moe/oh-my-tuna/oh-my-tuna.py -O ${CAI_PACKAGE_DIR}/oh-my-tuna.py
-	conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
-	conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
 	python ${CAI_PACKAGE_DIR}/oh-my-tuna.py
 }
 
@@ -77,8 +75,7 @@ function installOpenBabel(){
 	echo Installing OpenBabel...
 	installAnaconda
 	checkNetwork
-	conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
-	conda install -y openbabel
+	conda install -y openbabel -c openbabel
 }
 
 #RDkit
@@ -86,8 +83,7 @@ function installRDkit(){
 	echo Installing RDkit...
 	installAnaconda
 	checkNetwork
-	conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
-	conda install -y rdkit
+	conda install -y rdkit -c rdkit
 }
 
 #ReacNetGenerator
@@ -95,7 +91,6 @@ function installReacNetGenerator(){
 	echo Installing ReacNetGenerator...
 	installAnaconda
 	checkNetwork
-	conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
 	conda install -y reacnetgenerator -c njzjz
 }
 
