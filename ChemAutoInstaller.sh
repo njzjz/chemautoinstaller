@@ -100,7 +100,7 @@ function installLAMMPS(){
 	CAI_LAMMPS_DIR=${CAI_SOFT_DIR}/lammps
     wget http://lammps.sandia.gov/tars/lammps-stable.tar.gz -O ${CAI_PACKAGE_DIR}/lammps.tar.gz
 	tar -vxf ${CAI_PACKAGE_DIR}/lammps.tar.gz -C ${CAI_PACKAGE_DIR}
-	mv ${CAI_PACKAGE_DIR}/lammps-22Aug18 ${CAI_LAMMPS_DIR}	
+	mv ${CAI_PACKAGE_DIR}/lammps-* ${CAI_LAMMPS_DIR}	
 	cd ${CAI_LAMMPS_DIR}/src && make yes-user-reaxc && make yes-user-intel
 	if checkIntel ;then
 		cd ${CAI_LAMMPS_DIR}/src && make intel_cpu_intelmpi
