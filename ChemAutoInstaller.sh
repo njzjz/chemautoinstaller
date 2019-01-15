@@ -56,7 +56,7 @@ function installAnaconda(){
 	if ! [ -x "$(command -v conda)" ];then
 		echo Installing Anaconda 3...
 		CAI_ANACONDA_DIR=${CAI_SOFT_DIR}/anaconda3
-		wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-5.3.0-Linux-x86_64.sh -O ${CAI_PACKAGE_DIR}/anaconda3.sh
+		wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O ${CAI_PACKAGE_DIR}/anaconda3.sh
 		bash ${CAI_PACKAGE_DIR}/anaconda3.sh -b -p ${CAI_ANACONDA_DIR}
 		echo 'export PATH='${CAI_ANACONDA_DIR}'/bin:$PATH'>>${CAI_BASHRC_FILE}
 	    setbashrc
@@ -67,8 +67,6 @@ function installAnaconda(){
 
 function setMirror(){
 	wget https://tuna.moe/oh-my-tuna/oh-my-tuna.py -O ${CAI_PACKAGE_DIR}/oh-my-tuna.py
-	conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
-	conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
 	python ${CAI_PACKAGE_DIR}/oh-my-tuna.py
 }
 
@@ -77,8 +75,7 @@ function installOpenBabel(){
 	echo Installing OpenBabel...
 	installAnaconda
 	checkNetwork
-	conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
-	conda install -y openbabel
+	conda install -y openbabel -c openbabel
 }
 
 #RDkit
@@ -86,8 +83,7 @@ function installRDkit(){
 	echo Installing RDkit...
 	installAnaconda
 	checkNetwork
-	conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
-	conda install -y rdkit
+	conda install -y rdkit -c rdkit
 }
 
 #ReacNetGenerator
@@ -95,8 +91,9 @@ function installReacNetGenerator(){
 	echo Installing ReacNetGenerator...
 	installAnaconda
 	checkNetwork
-	conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
-	conda install -y reacnetgenerator -c njzjz
+	installOpenBabel
+	installRDkit
+	pip install reacnetgenerator
 }
 
 #LAMMPS
@@ -105,7 +102,7 @@ function installLAMMPS(){
 	CAI_LAMMPS_DIR=${CAI_SOFT_DIR}/lammps
     wget http://lammps.sandia.gov/tars/lammps-stable.tar.gz -O ${CAI_PACKAGE_DIR}/lammps.tar.gz
 	tar -vxf ${CAI_PACKAGE_DIR}/lammps.tar.gz -C ${CAI_PACKAGE_DIR}
-	mv ${CAI_PACKAGE_DIR}/lammps-22Aug18 ${CAI_LAMMPS_DIR}	
+	mv ${CAI_PACKAGE_DIR}/lammps-* ${CAI_LAMMPS_DIR}	
 	cd ${CAI_LAMMPS_DIR}/src && make yes-user-reaxc && make yes-user-intel
 	if checkIntel ;then
 		cd ${CAI_LAMMPS_DIR}/src && make intel_cpu_intelmpi
