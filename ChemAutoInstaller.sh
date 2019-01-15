@@ -56,7 +56,7 @@ function installAnaconda(){
 	if ! [ -x "$(command -v conda)" ];then
 		echo Installing Anaconda 3...
 		CAI_ANACONDA_DIR=${CAI_SOFT_DIR}/anaconda3
-		wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-5.3.0-Linux-x86_64.sh -O ${CAI_PACKAGE_DIR}/anaconda3.sh
+		wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O ${CAI_PACKAGE_DIR}/anaconda3.sh
 		bash ${CAI_PACKAGE_DIR}/anaconda3.sh -b -p ${CAI_ANACONDA_DIR}
 		echo 'export PATH='${CAI_ANACONDA_DIR}'/bin:$PATH'>>${CAI_BASHRC_FILE}
 	    setbashrc
