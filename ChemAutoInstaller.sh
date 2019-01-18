@@ -198,7 +198,7 @@ function usage(){
 	echo bash ChemAutoInstaller.sh --all
 }
 
-ARGS=`getopt -a -o Ah -l prefix:,all,anaconda,openbabel,rdkit,lammps,vmd,openmpi,grace,reacnetgenerator,help -- "$@"`
+ARGS=$(getopt -a -o Ah -l prefix:,all,anaconda,openbabel,rdkit,lammps,vmd,openmpi,grace,reacnetgenerator,help -- "$@")
 [ $? -ne 0 ] && usage && exit
 [ $# -eq 0 ] && usage && exit
 eval set -- "${ARGS}"
