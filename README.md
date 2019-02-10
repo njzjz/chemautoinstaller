@@ -1,6 +1,7 @@
 # ChemAutoInstaller
 
 [![Build Status](https://travis-ci.com/njzjz/ChemAutoInstaller.svg?branch=master)](https://travis-ci.com/njzjz/ChemAutoInstaller)
+[![Docker](https://shields.beevelop.com/docker/pulls/njzjz/chemautoinstaller.svg?style=flat)](https://hub.docker.com/r/njzjz/chemautoinstaller)
 
 Scripts to install chemical softwares on Linux automatically.
 
