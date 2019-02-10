@@ -80,7 +80,7 @@ if ! [ -x "$(command -v conda)" ];then
 	echo Installing Anaconda 3...
 	CAI_ANACONDA_BASH=$(mktemp)
 	wget -O $CAI_ANACONDA_BASH "$CAI_ANACONDA_URL" --progress=dot:giga
-	bash $CAI_ANACONDA_BASH -b -p "$CAI_ANACONDA_DIR"
+	bash "$CAI_ANACONDA_BASH" -b -p "$CAI_ANACONDA_DIR"
 	rm -rf $CAI_ANACONDA_BASH
 	export PATH=$CAI_ANACONDA_DIR/bin:$PATH
 	conda init
