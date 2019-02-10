@@ -73,14 +73,14 @@ while true;do
 	shift
 done
 
-test $CAI_ANACONDA || test $CAI_PACKAGE || exit
+test "$CAI_ANACONDA" || test "$CAI_PACKAGE" || exit
 
 # check whether conda is installed
 if ! [ -x "$(command -v conda)" ];then
 	echo Installing Anaconda 3...
-	wget -O - $CAI_ANACONDA_URL --progress=dot:giga | bash -b -p $CAI_ANACONDA_DIR
+	wget -O - "$CAI_ANACONDA_URL" --progress=dot:giga | bash -b -p "$CAI_ANACONDA_DIR"
 	export PATH=$CAI_ANACONDA_DIR/bin:$PATH && conda init
 fi
 # use tsinghua mirror in China
-test $CAI_CN && wget -O - https://tuna.moe/oh-my-tuna/oh-my-tuna.py | python
-test $CAI_PACKAGE && conda install $CAI_PACKAGE -c $CAI_CONDA_FORGE -c openbabel -c njzjz
+test "$CAI_CN" && wget -O - https://tuna.moe/oh-my-tuna/oh-my-tuna.py | python
+test "$CAI_PACKAGE" && conda install "$CAI_PACKAGE" -c "$CAI_CONDA_FORGE" -c openbabel -c njzjz
