@@ -23,7 +23,7 @@ Scripts to install chemical softwares on Linux automatically.
 Only run the following script to install all of softwares:
 
 ```bash
-wget -O - https://raw.githubusercontent.com/njzjz/ChemAutoInstaller/master/ChemAutoInstaller.sh | bash -A
+wget -O - https://raw.githubusercontent.com/njzjz/ChemAutoInstaller/master/ChemAutoInstaller.sh | bash -s -- -A
 ```
 
 Available command-line options:
