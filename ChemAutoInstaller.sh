@@ -78,7 +78,9 @@ test "$CAI_ANACONDA" || test "$CAI_PACKAGE" || exit
 # check whether conda is installed
 if ! [ -x "$(command -v conda)" ];then
 	echo Installing Anaconda 3...
-	wget -O - "$CAI_ANACONDA_URL" --progress=dot:giga | bash -b -p "$CAI_ANACONDA_DIR"
+	CAI_ANACONDA_BASH=$(mktemp)
+	wget -O $(mktemp) "$CAI_ANACONDA_URL" --progress=dot:giga
+	bash $(mktemp) -b -p "$CAI_ANACONDA_DIR"
 	export PATH=$CAI_ANACONDA_DIR/bin:$PATH && conda init
 fi
 # use tsinghua mirror in China
