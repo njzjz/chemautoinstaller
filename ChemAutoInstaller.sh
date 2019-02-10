@@ -73,7 +73,7 @@ while true;do
 	shift
 done
 
-test $CAI_ANACONDA || test $CAI_ANACONDA || exit
+test $CAI_ANACONDA || test $CAI_PACKAGE || exit
 
 # check whether conda is installed
 if ! [ -x "$(command -v conda)" ];then
