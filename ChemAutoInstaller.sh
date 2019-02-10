@@ -81,8 +81,10 @@ if ! [ -x "$(command -v conda)" ];then
 	CAI_ANACONDA_BASH=$(mktemp)
 	wget -O $(CAI_ANACONDA_BASH) "$CAI_ANACONDA_URL" --progress=dot:giga
 	bash $(CAI_ANACONDA_BASH) -b -p "$CAI_ANACONDA_DIR"
+	rm -rf $(CAI_ANACONDA_BASH)
 	export PATH=$CAI_ANACONDA_DIR/bin:$PATH && conda init
 fi
 # use tsinghua mirror in China
 test "$CAI_CN" && wget -O - https://tuna.moe/oh-my-tuna/oh-my-tuna.py | python
-test "$CAI_PACKAGE" && conda install "$CAI_PACKAGE" -c "$CAI_CONDA_FORGE" -c openbabel -c njzjz
+test "$CAI_PACKAGE" && conda install "$CAI_PACKAGE" -c "$CAI_CONDA_FORGE" -c openbabel -c njzjz -y
+conda clean --all -y
