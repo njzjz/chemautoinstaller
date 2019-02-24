@@ -17,7 +17,6 @@ Scripts to install chemical softwares on Linux automatically.
 * [OpenBabel](https://github.com/openbabel/openbabel)
 * [RDkit](https://github.com/rdkit/rdkit)
 * [OpenMPI](https://github.com/open-mpi/ompi)
-* [ReacNetGenerator](https://github.com/njzjz/reacnetgenerator)
 
 ## Usage
 
@@ -33,7 +32,6 @@ Available command-line options:
 --all, -A                           Install all of softwares
 --anaconda --openbabel --rdkit      Install softwares one by one
 --lammps --vmd --openmpi
---reacnetgenerator 
 --prefix                            Directory of Anaconda, default is $HOME/anaconda3
 --cn                                If you are in China
 --help, -h                          See help
