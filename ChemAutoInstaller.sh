@@ -12,14 +12,13 @@ Available command-line options:
 --all, -A                           Install all of softwares
 --anaconda --openbabel --rdkit      Install softwares one by one
 --lammps --vmd --openmpi
---reacnetgenerator 
 --prefix                            Directory of Anaconda, default is $HOME/anaconda3
 --cn                                If you are in China
 --help, -h                          See help
 EOF
 }
 
-ARGS=$(getopt -a -o Ah -l prefix:,all,anaconda,openbabel,rdkit,lammps,vmd,openmpi,reacnetgenerator,cn,help -- "$@")
+ARGS=$(getopt -a -o Ah -l prefix:,all,anaconda,openbabel,rdkit,lammps,vmd,openmpi,cn,help -- "$@")
 [ $? -ne 0 ] && usage && exit
 [ $# -eq 0 ] && usage && exit
 eval set -- "${ARGS}"
@@ -56,11 +55,8 @@ while true;do
 		--openmpi)
 			CAI_PACKAGE="$CAI_PACKAGE openmpi"
 			;;
-		--reacnetgenerator)
-			CAI_PACKAGE="$CAI_PACKAGE reacnetgenerator"
-			;;
 		-A|--all)
-			CAI_PACKAGE="openbabel rdkit lammps vmd openmpi reacnetgenerator"
+			CAI_PACKAGE="openbabel rdkit lammps vmd openmpi"
 			;;
 		-h|--help)
 			usage
@@ -87,5 +83,5 @@ if ! [ -x "$(command -v conda)" ];then
 fi
 # use tsinghua mirror in China
 test "$CAI_CN" && wget -O - https://tuna.moe/oh-my-tuna/oh-my-tuna.py | python
-test "$CAI_PACKAGE" && conda install $CAI_PACKAGE -c "$CAI_CONDA_FORGE" -c openbabel -c njzjz -y
+test "$CAI_PACKAGE" && conda install $CAI_PACKAGE -c "$CAI_CONDA_FORGE" -y
 conda clean --all -y
