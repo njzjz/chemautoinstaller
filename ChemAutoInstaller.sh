@@ -34,7 +34,7 @@ while true;do
 			;;
 		--cn)
 			CAI_CN=42
-			CAI_ANACONDA_URL="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda2-2018.12-Linux-x86_64.sh"
+			CAI_ANACONDA_URL="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2018.12-Linux-x86_64.sh"
 			CAI_CONDA_FORGE="https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/"
 			;;
 		--anaconda)
