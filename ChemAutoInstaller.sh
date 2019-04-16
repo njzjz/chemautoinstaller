@@ -24,7 +24,7 @@ ARGS=$(getopt -a -o Ah -l prefix:,all,anaconda,openbabel,rdkit,lammps,vmd,openmp
 eval set -- "${ARGS}"
 
 CAI_ANACONDA_DIR=$HOME/anaconda3
-CAI_ANACONDA_URL="https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh"
+CAI_ANACONDA_URL="https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh"
 CAI_CONDA_FORGE=conda-forge
 
 while true;do
@@ -34,8 +34,8 @@ while true;do
 			;;
 		--cn)
 			CAI_CN=42
-			CAI_ANACONDA_URL="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2018.12-Linux-x86_64.sh"
-			CAI_CONDA_FORGE="https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/"
+			CAI_ANACONDA_URL="https://mirrors.ustc.edu.cn/anaconda/archive/Anaconda3-2019.03-Linux-x86_64.sh"
+			CAI_CONDA_FORGE="https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/"
 			;;
 		--anaconda)
 			CAI_ANACONDA=42
