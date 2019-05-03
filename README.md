@@ -33,6 +33,5 @@ Available command-line options:
 --anaconda --openbabel --rdkit      Install softwares one by one
 --lammps --vmd --openmpi
 --prefix                            Directory of Anaconda, default is $HOME/anaconda3
---cn                                If you are in China
 --help, -h                          See help
 ```
