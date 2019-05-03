@@ -13,7 +13,6 @@ Available command-line options:
 --anaconda --openbabel --rdkit      Install softwares one by one
 --lammps --vmd --openmpi
 --prefix                            Directory of Anaconda, default is $HOME/anaconda3
---cn                                If you are in China
 --help, -h                          See help
 EOF
 }
@@ -31,11 +30,6 @@ while true; do
 	case "$1" in
 	--prefix)
 		CAI_ANACONDA_DIR=$2
-		;;
-	--cn)
-		CAI_CN=42
-		CAI_ANACONDA_URL="https://mirrors.ustc.edu.cn/anaconda/archive/Anaconda3-2019.03-Linux-x86_64.sh"
-		CAI_CONDA_FORGE="https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/"
 		;;
 	--anaconda)
 		CAI_ANACONDA=42
@@ -82,6 +76,5 @@ if ! [ -x "$(command -v conda)" ]; then
 	conda init
 fi
 # use tsinghua mirror in China
-test "$CAI_CN" && wget -O - https://tuna.moe/oh-my-tuna/oh-my-tuna.py | python
 test "$CAI_PACKAGE" && conda install $CAI_PACKAGE -c "$CAI_CONDA_FORGE" -y
 conda clean --all -y
