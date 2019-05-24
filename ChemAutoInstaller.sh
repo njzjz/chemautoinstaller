@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cat <<EOF
 ChemAutoInstaller
 Use Anaconda to install common Chemistry packages.
