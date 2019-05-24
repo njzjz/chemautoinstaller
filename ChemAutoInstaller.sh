@@ -71,7 +71,7 @@ test "$CAI_ANACONDA" || test "$CAI_PACKAGE" || exit
 if ! [ -x "$(command -v conda)" ]; then
 	echo Installing Anaconda 3...
 	CAI_ANACONDA_BASH=$(mktemp)
-	wget -# -o "$CAI_ANACONDA_BASH" "$CAI_ANACONDA_URL"
+	curl -# -o "$CAI_ANACONDA_BASH" "$CAI_ANACONDA_URL"
 	bash "$CAI_ANACONDA_BASH" -b -p "$CAI_ANACONDA_DIR"
 	rm -rf "$CAI_ANACONDA_BASH"
 	export PATH=$CAI_ANACONDA_DIR/bin:$PATH
