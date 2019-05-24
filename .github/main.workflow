@@ -11,5 +11,5 @@ action "bash" {
 
 action "apt install wget" {
   uses = "actions/bin/sh@master"
-  args = ["apt update && apt install wget"]
+  args = ["apt update && apt install wget -y"]
 }
