@@ -6,10 +6,10 @@ workflow "Test" {
 action "bash" {
   uses = "actions/bin/sh@master"
   needs = "apt install wget"
-  args = "bash ChemAutoInstaller.sh -A"
+  args = ["bash ChemAutoInstaller.sh -A"]
 }
 
 action "apt install wget" {
   uses = "actions/bin/sh@master"
-  args = "apt update && apt install wget"
+  args = ["apt update && apt install wget"]
 }
