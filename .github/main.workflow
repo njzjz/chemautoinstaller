@@ -5,5 +5,5 @@ workflow "Test" {
 
 action "bash" {
   uses = "actions/bin/sh@master"
-  args = ["apt update && apt install wget -y && bash ChemAutoInstaller.sh -A"]
+  args = ["apt update && apt install wget bzip2 -y && bash ChemAutoInstaller.sh -A"]
 }
