@@ -5,5 +5,6 @@ workflow "Test" {
 
 action "bash" {
   uses = "docker://ubuntu@latest"
-  runs = "bash ChemAutoInstaller.sh -A"
+  runs = "/bin/bash"
+  args = "ChemAutoInstaller.sh -A"
 }
