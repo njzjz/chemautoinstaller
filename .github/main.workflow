@@ -24,7 +24,10 @@ action "Filters for GitHub Actions" {
 action "login" {
   uses = "actions/docker/login@master"
   needs = "Filters for GitHub Actions"
-  secrets = ["DOCKER_USERNAME", "DOCKER_PASSWORD"]
+  secrets = [
+    "DOCKER_USERNAME",
+    "DOCKER_PASSWORD",
+  ]
   env = {
     DOCKER_REGISTRY_URL = "docker.pkg.github.com"
   }
