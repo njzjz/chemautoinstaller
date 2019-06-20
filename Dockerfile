@@ -1,4 +1,4 @@
-FROM ubuntu:18.10@sha256:50c1dc36867d3caf13f3c07456b40c57b3e6a4dcda20d05feac2c15e357353d4
+FROM ubuntu:18.10@sha256:99620cf8975764d3189177ff85d355a51abf902d14d2185ec987880c80d05ff3
 RUN apt update && apt install wget bzip2 -y && apt clean -y
 COPY "ChemAutoInstaller.sh" "/ChemAutoInstaller.sh"
 RUN bash ChemAutoInstaller.sh -A
