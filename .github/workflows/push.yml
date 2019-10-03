@@ -14,11 +14,8 @@ jobs:
       uses: actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108
       with:
         args: build -t chemautoinstaller .
-    - name: Filters for GitHub Actions
-      uses: actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da
-      with:
-        args: branch master
     - name: login
+      if: github.ref == 'refs/heads/master'
       uses: actions/docker/login@master
       env:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
@@ -26,6 +23,7 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
     - name: tag
       uses: actions/docker/tag@master
+      if: github.ref == 'refs/heads/master'
       env:
         CONTAINER_REGISTRY_PATH: docker.pkg.github.com/njzjz/chemautoinstaller
         IMAGE_NAME: chemautoinstaller
@@ -33,6 +31,7 @@ jobs:
         args: $IMAGE_NAME $CONTAINER_REGISTRY_PATH/$IMAGE_NAME
     - name: push
       uses: actions/docker/cli@master
+      if: github.ref == 'refs/heads/master'
       env:
         CONTAINER_REGISTRY_PATH: docker.pkg.github.com/njzjz/chemautoinstaller
         IMAGE_NAME: chemautoinstaller
