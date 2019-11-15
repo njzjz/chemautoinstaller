@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - run: apt update && apt install wget bzip2 -y && bash ChemAutoInstaller.sh -A
+    - run: bash ChemAutoInstaller.sh -A
     - run: docker build -t chemautoinstaller .
     - run: docker login
       if: github.ref == 'refs/heads/master'
