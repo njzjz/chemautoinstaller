@@ -5,11 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: bash
-      uses: actions/bin/sh@master
-      with:
-        args: '"apt update && apt install wget bzip2 -y && bash ChemAutoInstaller.sh
-          -A"'
+    - run: apt update && apt install wget bzip2 -y && bash ChemAutoInstaller.sh -A
     - name: GitHub Action for Docker
       uses: actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108
       with:
